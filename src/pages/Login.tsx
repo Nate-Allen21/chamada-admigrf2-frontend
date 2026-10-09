@@ -28,7 +28,7 @@ export default function Login() {
     <div className="login-split">
       <div className="login-form-side p-4">
         <div style={{ width: '100%', maxWidth: 380 }}>
-          <img src="/admig-logo.svg" alt="ADMIG Riacho Fundo" className="login-logo mb-4" />
+          <img src="/admig-mark.svg" alt="ADMIG AD" className="login-logo mb-4" />
           <h2 className="font-principal text-brand-primary mb-1">Bem-vindo(a)</h2>
           <p className="text-secondary mb-4">Entre com sua conta para acessar a chamada.</p>
 
@@ -65,7 +65,7 @@ export default function Login() {
         </div>
       </div>
       <div className="login-brand-side">
-        <img src="/admig-logo.svg" alt="ADMIG Riacho Fundo" className="login-brand-logo mb-3" />
+        <img src="/admig-mark.svg" alt="ADMIG AD" className="login-brand-logo mb-3" />
         <div className="fs-5 text-center">Sistema de Chamada<br/>Escola Dominical</div>
         <hr className="w-50 my-4" style={{ borderColor: 'rgba(255,255,255,0.4)' }} />
         <div className="text-center small" style={{ maxWidth: 320 }}>

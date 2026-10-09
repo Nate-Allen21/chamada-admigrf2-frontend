@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">ADMIG AD</title>
+  <desc id="desc">Globo terrestre azul com a marca AD em primeiro plano</desc>
+  <defs>
+    <clipPath id="globe-clip"><circle cx="80" cy="70" r="67"/></clipPath>
+  </defs>
+  <rect width="160" height="160" fill="#fff"/>
+  <circle cx="80" cy="70" r="67" fill="#fff" stroke="#0d2b54" stroke-width="4"/>
+  <g clip-path="url(#globe-clip)" fill="#0d2b54">
+    <path d="M8 47c14-15 27-23 42-24 10 0 16 5 20 12l-5 12-13 3-7 10-15 3-8 10-15-1z"/>
+    <path d="M48 61l13-7 14 5 7 14-7 10-4 18-10 10-7 19-14-9-4-20-9-9 6-16z"/>
+    <path d="M111 18l17 2 14 11 9 16-8 11-12-4-8 6-12-9-5-15z"/>
+    <path d="M113 56l14-5 15 7 6 14-8 15-4 16-12 10-8 18-14-8-3-20 7-14-5-13z"/>
+    <path d="M24 22c16-15 38-22 61-22 27 0 51 10 68 27-20-12-42-17-65-14-26 3-46 14-64 32z" opacity=".9"/>
+  </g>
+  <path d="M6 78c2 27 15 49 36 63M154 57c2 23-4 44-17 61" fill="none" stroke="#0d2b54" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M41 111h78l-10 43H51z" fill="#fff" stroke="#0d2b54" stroke-width="4"/>
+  <text x="80" y="143" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" font-weight="800" letter-spacing="1" fill="#0d2b54">AD</text>
+</svg>

@@ -103,8 +103,8 @@ h1, h2, h3, .font-principal {
 }
 .sidebar-logo {
   display: block;
-  width: 150px;
-  height: 168px;
+  width: 132px;
+  height: 132px;
   object-fit: contain;
   margin: 0 auto;
   background: #fff;
@@ -112,14 +112,14 @@ h1, h2, h3, .font-principal {
 }
 .login-logo {
   display: block;
-  width: 150px;
-  height: 168px;
+  width: 132px;
+  height: 132px;
   object-fit: contain;
   margin: 0 auto;
 }
 .login-brand-logo {
   width: 220px;
-  height: 248px;
+  height: 220px;
   object-fit: contain;
   background: #fff;
   border-radius: 18px;
