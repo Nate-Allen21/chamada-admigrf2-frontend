@@ -16,7 +16,7 @@ export default function Sidebar() {
   return (
     <div className="sidebar-admig d-flex flex-column p-3" style={{ width: 250 }}>
       <div className="text-center mb-4 mt-2">
-        <img src="/admig-mark.svg" alt="ADMIG AD" className="sidebar-logo" />
+        <img src="/admig-logo.png" alt="ADMIG AD" className="sidebar-logo" />
         <div className="small text-white-50 mt-2">Escola Dominical</div>
       </div>
       <nav className="nav nav-pills flex-column gap-1">
