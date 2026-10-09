@@ -1,0 +1,180 @@
+:root {
+  /* Paleta de cores - ADMIG RF II */
+  --admig-azul-principal: #0A5C98;
+  --admig-azul-petroleo: #1B7A8C;
+  --admig-azul-indigo: #2E4A9E;
+  --admig-azul-marinho: #0D2B54;
+  --admig-dourado: #F4B942;
+
+  --admig-branco: #FFFFFF;
+  --admig-cinza-claro: #F4F6F9;
+  --admig-cinza-texto: #5B6470;
+  --admig-verde-presente: #2E9E5B;
+  --admig-vermelho-falta: #D64545;
+
+  /* Tipografia */
+  --font-apoio: 'Poppins', sans-serif;
+  --font-principal: 'Playfair Display', 'Chasa Marelo', serif; /* substitua por Chasa Marelo se disponível como webfont */
+
+  --radius-card: 16px;
+  --shadow-card: 0 4px 14px rgba(13, 43, 84, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-apoio);
+  background-color: var(--admig-cinza-claro);
+  color: var(--admig-azul-marinho);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-principal {
+  font-family: var(--font-principal);
+  font-weight: 600;
+}
+
+.text-brand-primary { color: var(--admig-azul-principal); }
+.text-brand-gold { color: var(--admig-dourado); }
+
+.bg-brand-primary { background-color: var(--admig-azul-principal); }
+.bg-brand-navy { background-color: var(--admig-azul-marinho); }
+.bg-brand-gold { background-color: var(--admig-dourado); }
+
+.btn-admig {
+  background-color: var(--admig-azul-principal);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.6rem 1.4rem;
+  transition: background-color .2s ease;
+}
+.btn-admig:hover {
+  background-color: var(--admig-azul-marinho);
+  color: #fff;
+}
+
+.btn-admig-outline {
+  background: transparent;
+  border: 2px solid var(--admig-azul-principal);
+  color: var(--admig-azul-principal);
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.55rem 1.3rem;
+}
+
+.btn-admig-gold {
+  background-color: var(--admig-dourado);
+  border: none;
+  color: var(--admig-azul-marinho);
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 0.6rem 1.4rem;
+}
+
+.card-admig {
+  background: #fff;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: none;
+}
+
+.sidebar-admig {
+  background-color: var(--admig-azul-marinho);
+  min-height: 100vh;
+  color: #fff;
+}
+
+.sidebar-admig .nav-link {
+  color: rgba(255,255,255,0.75);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  font-weight: 500;
+}
+
+.sidebar-admig .nav-link.active,
+.sidebar-admig .nav-link:hover {
+  background-color: var(--admig-azul-principal);
+  color: #fff;
+}
+.sidebar-logo {
+  display: block;
+  width: 150px;
+  height: 168px;
+  object-fit: contain;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 14px;
+}
+.login-logo {
+  display: block;
+  width: 150px;
+  height: 168px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+.login-brand-logo {
+  width: 220px;
+  height: 248px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 18px;
+}
+
+.badge-presente {
+  background-color: var(--admig-verde-presente);
+  color: #fff;
+}
+.badge-falta {
+  background-color: var(--admig-vermelho-falta);
+  color: #fff;
+}
+
+.badge-classe-VARAO { background-color: var(--admig-azul-principal); color:#fff; }
+.badge-classe-CRIANCA { background-color: var(--admig-dourado); color: var(--admig-azul-marinho); }
+.badge-classe-IRMA { background-color: var(--admig-azul-indigo); color:#fff; }
+.badge-classe-ADOLESCENTE { background-color: var(--admig-azul-petroleo); color:#fff; }
+
+.login-split {
+  min-height: 100vh;
+  display: flex;
+}
+.login-split .login-form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.login-split .login-brand-side {
+  flex: 1;
+  background-color: var(--admig-azul-principal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 2rem;
+}
+@media (max-width: 900px) {
+  .login-split .login-brand-side { display: none; }
+}
+
+.licao-pill {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.licao-pill.passada { background-color: var(--admig-azul-petroleo); color: #fff; }
+.licao-pill.atual { background-color: var(--admig-dourado); color: var(--admig-azul-marinho); box-shadow: 0 0 0 4px rgba(244,185,66,0.35); }
+.licao-pill.futura { background-color: #E5E9F0; color: var(--admig-cinza-texto); }
