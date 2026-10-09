@@ -107,8 +107,10 @@ h1, h2, h3, .font-principal {
   height: 132px;
   object-fit: contain;
   margin: 0 auto;
-  background: #fff;
   border-radius: 14px;
+}
+.logo-on-dark {
+  filter: brightness(0) invert(1);
 }
 .login-logo {
   display: block;
