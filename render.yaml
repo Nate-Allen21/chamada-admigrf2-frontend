@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: chamada-admigrf2-frontend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: VITE_API_URL
+        sync: false
