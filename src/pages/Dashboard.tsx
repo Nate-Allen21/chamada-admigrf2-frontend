@@ -2,10 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api/client';
 import { CalendarioResponse, Classe, NOMES_CLASSE } from '../types';
-import { useAuth } from '../context/AuthContext';
 
 export default function Dashboard() {
-  const { usuario } = useAuth();
   const [calendario, setCalendario] = useState<CalendarioResponse | null>(null);
   const [classes, setClasses] = useState<Classe[]>([]);
   const [carregando, setCarregando] = useState(true);
@@ -24,7 +22,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h3 className="font-principal text-brand-primary mb-1">Olá, {usuario?.nome?.split(' ')[0]} 👋</h3>
+      <h3 className="font-principal text-brand-primary mb-1">Painel da Escola Dominical</h3>
       <p className="text-secondary mb-4">Este é o painel geral da Escola Dominical - ADMIG RF II.</p>
 
       {carregando ? (

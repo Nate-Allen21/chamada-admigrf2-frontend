@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import api from '../api/client';
 import { Classe, NOMES_CLASSE } from '../types';
-import { useAuth } from '../context/AuthContext';
 
 export default function Classes() {
   const [classes, setClasses] = useState<Classe[]>([]);
   const [carregando, setCarregando] = useState(true);
   const [editando, setEditando] = useState<Classe | null>(null);
-  const { isAdmin } = useAuth();
 
   function carregar() {
     setCarregando(true);
@@ -65,11 +63,9 @@ export default function Classes() {
                     <span className="text-secondary">
                       {c.professorResponsavel ? `Prof(a). ${c.professorResponsavel}` : 'Sem professor(a) definido(a)'}
                     </span>
-                    {isAdmin && (
-                      <button className="btn btn-sm btn-admig-outline" onClick={() => setEditando(c)}>
-                        Editar
-                      </button>
-                    )}
+                    <button className="btn btn-sm btn-admig-outline" onClick={() => setEditando(c)}>
+                      Editar
+                    </button>
                   </div>
                 )}
               </div>
