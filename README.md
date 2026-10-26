@@ -11,18 +11,34 @@ npm run dev
 
 Configure `VITE_API_URL` em `.env` quando a API não estiver disponível em `/api`.
 
-## Deploy no Render
+## Deploy na Vercel
 
-Este frontend foi preparado para rodar em um serviço web do Render usando Docker.
+Importe o repositório GitHub na Vercel e configure a Root Directory para a pasta
+do frontend (caso o repositório contenha apenas o frontend, deixe `./`). A Vercel
+detecta Vite automaticamente. O comando de build é `npm run build` e a pasta de
+saída é `dist`.
 
-Configure as variáveis de ambiente do serviço Render:
+Configure estas variáveis em Project Settings > Environment Variables, para cada
+ambiente em que fará deploy:
 
 ```text
-PORT=10000
-VITE_API_URL=https://seu-backend.onrender.com/api
-VITE_API_BASE=https://seu-backend.onrender.com
+VITE_API_URL=https://SUA-API.onrender.com/api
+VITE_API_BASE=https://SUA-API.onrender.com
 ```
 
-O Render vai servir o app em sua porta dinâmica e o nginx vai responder ao `PORT` automaticamente.
-O frontend usa a URL pública do backend, então não depende de um container interno para chamar a API.
+`VITE_API_URL` é a URL chamada pelas requisições REST. `VITE_API_BASE` é usada
+para carregar URLs de fotos servidas pelo backend. São valores públicos incluídos
+no bundle do frontend; não coloque senhas ou tokens nelas. Após alterá-las, faça
+um novo deploy. O `vercel.json` já envia rotas React para `index.html`.
+
+Não configure `PORT` ou `VITE_API_BASE` como segredos. O serviço frontend no
+Render só é necessário se optar por publicar o container Docker existente em vez
+da Vercel; não mantenha ambos sem necessidade.
+
+## Desenvolvimento local com Vite
+
+```text
+VITE_API_URL=http://localhost:8080/api
+VITE_API_BASE=http://localhost:8080
+```
 
