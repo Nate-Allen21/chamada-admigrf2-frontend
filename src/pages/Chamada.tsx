@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import api from '../api/client';
-import { Aluno, CalendarioResponse, Classe, NOMES_CLASSE, Presenca } from '../types';
+import { Aluno, CalendarioResponse, Classe, Licao, NOMES_CLASSE, Presenca, Trimestre } from '../types';
 
 interface ItemChamada {
   alunoId: number;
@@ -12,6 +12,9 @@ export default function Chamada() {
   const [classes, setClasses] = useState<Classe[]>([]);
   const [classeId, setClasseId] = useState('');
   const [calendario, setCalendario] = useState<CalendarioResponse | null>(null);
+  const [trimestres, setTrimestres] = useState<Trimestre[]>([]);
+  const [trimestreId, setTrimestreId] = useState('');
+  const [carregandoLicoes, setCarregandoLicoes] = useState(false);
   const [licaoId, setLicaoId] = useState('');
   const [itens, setItens] = useState<ItemChamada[]>([]);
   const [carregando, setCarregando] = useState(false);
@@ -19,12 +22,46 @@ export default function Chamada() {
   const [sucesso, setSucesso] = useState(false);
 
   useEffect(() => {
-    api.get<Classe[]>('/classes').then((r) => setClasses(r.data));
-    api.get<CalendarioResponse>('/trimestres/calendario').then((r) => {
-      setCalendario(r.data);
-      if (r.data.licaoAtual) setLicaoId(String(r.data.licaoAtual.id));
+    let cancelado = false;
+    Promise.all([api.get<Classe[]>('/classes'), api.get<Trimestre[]>('/trimestres')]).then(([classesRes, trimestresRes]) => {
+      if (cancelado) return;
+      setClasses(classesRes.data);
+      const vistos = new Set<string>();
+      const disponiveis = [...trimestresRes.data].sort((a, b) => a.id - b.id).filter((trimestre) => {
+        const chave = `${trimestre.ano}-${trimestre.numero}`;
+        if (vistos.has(chave)) return false;
+        vistos.add(chave);
+        return true;
+      });
+      setTrimestres(disponiveis);
+      const agora = new Date();
+      const hoje = `${agora.getFullYear()}-${String(agora.getMonth() + 1).padStart(2, '0')}-${String(agora.getDate()).padStart(2, '0')}`;
+      const selecionado = disponiveis.find((t) => t.dataInicio <= hoje && t.dataFim >= hoje)
+        || [...disponiveis].sort((a, b) => b.dataInicio.localeCompare(a.dataInicio))[0];
+      if (selecionado) setTrimestreId(String(selecionado.id));
     });
+    return () => { cancelado = true; };
   }, []);
+
+  useEffect(() => {
+    const trimestre = trimestres.find((item) => String(item.id) === trimestreId);
+    if (!trimestre) return;
+    let cancelado = false;
+    setCarregandoLicoes(true);
+    api.get<Licao[]>(`/licoes?trimestreId=${trimestre.id}`).then(({ data: licoes }) => {
+      if (cancelado) return;
+      const agora = new Date();
+      const hoje = `${agora.getFullYear()}-${String(agora.getMonth() + 1).padStart(2, '0')}-${String(agora.getDate()).padStart(2, '0')}`;
+      const licaoAtual = licoes.find((licao) => licao.data === hoje) || null;
+      setCalendario({ trimestre, licoes, licaoAtual, numeroLicaoAtual: licaoAtual?.numero ?? null });
+      const ultimaComTitulo = [...licoes].reverse().find((licao) => licao.titulo?.trim());
+      const licaoInicial = licaoAtual || ultimaComTitulo || licoes[0];
+      setLicaoId(licaoInicial ? String(licaoInicial.id) : '');
+    }).finally(() => {
+      if (!cancelado) setCarregandoLicoes(false);
+    });
+    return () => { cancelado = true; };
+  }, [trimestreId, trimestres]);
 
   useEffect(() => {
     if (!classeId || !licaoId) {
@@ -84,7 +121,16 @@ export default function Chamada() {
 
       <div className="card card-admig p-3 mb-4">
         <div className="row g-3">
-          <div className="col-12 col-md-6">
+          <div className="col-12 col-md-4">
+            <label className="form-label small fw-semibold">Trimestre</label>
+            <select className="form-select" value={trimestreId} onChange={(e) => setTrimestreId(e.target.value)}>
+              <option value="">Selecione o trimestre</option>
+              {trimestres.map((t) => (
+                <option key={t.id} value={t.id}>{t.numero}º Trimestre / {t.ano}{t.tituloRevista ? ` — ${t.tituloRevista}` : ''}</option>
+              ))}
+            </select>
+          </div>
+          <div className="col-12 col-md-4">
             <label className="form-label small fw-semibold">Classe</label>
             <select className="form-select" value={classeId} onChange={(e) => setClasseId(e.target.value)}>
               <option value="">Selecione a classe</option>
@@ -95,13 +141,13 @@ export default function Chamada() {
               ))}
             </select>
           </div>
-          <div className="col-12 col-md-6">
+          <div className="col-12 col-md-4">
             <label className="form-label small fw-semibold">Lição</label>
             <select className="form-select" value={licaoId} onChange={(e) => setLicaoId(e.target.value)}>
               <option value="">Selecione a lição</option>
               {calendario?.licoes.map((l) => (
                 <option key={l.id} value={l.id}>
-                  Lição {l.numero} — {l.data}
+                  Lição {l.numero} — {l.data}{l.titulo?.trim() ? ` — ${l.titulo}` : ''}
                   {calendario.numeroLicaoAtual === l.numero ? ' (atual)' : ''}
                 </option>
               ))}
@@ -111,6 +157,7 @@ export default function Chamada() {
       </div>
 
       {carregando && <div className="text-secondary">Carregando alunos...</div>}
+      {carregandoLicoes && <div className="text-secondary mb-3">Carregando lições...</div>}
 
       {!carregando && classeId && licaoId && (
         <div className="card card-admig p-0">
