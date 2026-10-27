@@ -142,6 +142,44 @@ h1, h2, h3, .font-principal {
 .badge-classe-ADOLESCENTE { background-color: var(--admig-azul-petroleo); color:#fff; }
 .badge-classe-JOVEM { background-color: var(--admig-verde-presente); color:#fff; }
 
+@media print {
+  @page {
+    size: landscape;
+    margin: 10mm;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .relatorio-imprimivel,
+  .relatorio-imprimivel * {
+    visibility: visible;
+  }
+
+  .relatorio-imprimivel {
+    position: absolute;
+    inset: 0;
+  }
+
+  .relatorio-imprimivel {
+    width: 100%;
+    color: #000;
+  }
+
+  .relatorio-imprimivel .table-responsive {
+    overflow: visible;
+  }
+
+  .relatorio-imprimivel table {
+    font-size: 8px;
+  }
+
+  .relatorio-imprimivel section {
+    break-inside: avoid;
+  }
+}
+
 .login-split {
   min-height: 100vh;
   display: flex;

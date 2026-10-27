@@ -6,6 +6,7 @@ const links = [
   { to: '/chamada', label: 'Chamada', icon: 'bi-clipboard-check' },
   { to: '/classes', label: 'Classes', icon: 'bi-diagram-3' },
   { to: '/alunos', label: 'Alunos', icon: 'bi-people' },
+  { to: '/relatorios', label: 'Relatórios', icon: 'bi-file-earmark-bar-graph' },
 ];
 
 export default function Sidebar() {

@@ -79,6 +79,7 @@ export default function Chamada() {
         setItens(
           alunosRes.data
             .filter((a) => a.ativo)
+            .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR', { sensitivity: 'base' }))
             .map((a) => ({
               alunoId: a.id,
               nome: a.nome,

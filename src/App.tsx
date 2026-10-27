@@ -5,6 +5,7 @@ import Classes from './pages/Classes';
 import Alunos from './pages/Alunos';
 import Chamada from './pages/Chamada';
 import Calendario from './pages/Calendario';
+import Relatorios from './pages/Relatorios';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/chamada" element={<Chamada />} />
           <Route path="/classes" element={<Classes />} />
           <Route path="/alunos" element={<Alunos />} />
+          <Route path="/relatorios" element={<Relatorios />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

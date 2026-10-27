@@ -61,6 +61,7 @@ export default function Alunos() {
 
   const classeSelecionada = classes.find((c) => c.id === Number(classeId));
   const mostrarResponsavel = classeSelecionada?.categoria === 'CRIANCA';
+  const alunosOrdenados = [...alunos].sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR', { sensitivity: 'base' }));
 
   return (
     <div>
@@ -129,7 +130,7 @@ export default function Alunos() {
                 </tr>
               </thead>
               <tbody>
-                {alunos.map((a) => (
+                {alunosOrdenados.map((a) => (
                   <tr key={a.id}>
                     <td>{a.nome}</td>
                     <td>
