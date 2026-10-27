@@ -9,7 +9,7 @@ const links = [
   { to: '/relatorios', label: 'Relatórios', icon: 'bi-file-earmark-bar-graph' },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="sidebar-admig d-flex flex-column p-3" style={{ width: 250 }}>
       <div className="text-center mb-4 mt-2">
@@ -22,6 +22,7 @@ export default function Sidebar() {
             key={l.to}
             to={l.to}
             end={l.exact}
+            onClick={onNavigate}
             className={({ isActive }) => `nav-link d-flex align-items-center gap-2 ${isActive ? 'active' : ''}`}
           >
             <i className={`bi ${l.icon}`} />

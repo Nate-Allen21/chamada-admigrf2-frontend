@@ -21,7 +21,7 @@ export default function MainLayout() {
           onClick={() => setSidebarAberta(false)}
         >
           <div onClick={(e) => e.stopPropagation()} style={{ height: '100%' }}>
-            <Sidebar />
+            <Sidebar onNavigate={() => setSidebarAberta(false)} />
           </div>
         </div>
       )}
