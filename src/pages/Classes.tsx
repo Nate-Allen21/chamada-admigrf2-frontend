@@ -24,8 +24,7 @@ export default function Classes() {
     <div>
       <h3 className="font-principal text-brand-primary mb-1">Classes</h3>
       <p className="text-secondary mb-4">
-        As quatro classes da Escola Dominical são fixas, conforme o padrão da igreja. Aqui você pode
-        definir o(a) professor(a) responsável por cada uma.
+        Classes da Escola Dominical e seus respectivos professores responsáveis.
       </p>
 
       {carregando ? (

@@ -1,12 +1,13 @@
 export type Role = 'ADMINISTRADOR' | 'SECRETARIO';
 
-export type CategoriaClasse = 'VARAO' | 'CRIANCA' | 'IRMA' | 'ADOLESCENTE';
+export type CategoriaClasse = 'VARAO' | 'CRIANCA' | 'IRMA' | 'ADOLESCENTE' | 'JOVEM';
 
 export const NOMES_CLASSE: Record<CategoriaClasse, { grupo: string; nome: string }> = {
   VARAO: { grupo: 'Varões', nome: 'Remidos de Deus' },
   CRIANCA: { grupo: 'Crianças', nome: 'Cordeirinhos de Cristo' },
   IRMA: { grupo: 'Irmãs', nome: 'Mensageiras de Cristo' },
   ADOLESCENTE: { grupo: 'Adolescentes', nome: 'Geração Eleita' },
+  JOVEM: { grupo: 'Jovens', nome: 'Atalaias de Deus' },
 };
 
 export interface Usuario {

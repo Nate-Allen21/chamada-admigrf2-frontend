@@ -140,6 +140,7 @@ h1, h2, h3, .font-principal {
 .badge-classe-CRIANCA { background-color: var(--admig-dourado); color: var(--admig-azul-marinho); }
 .badge-classe-IRMA { background-color: var(--admig-azul-indigo); color:#fff; }
 .badge-classe-ADOLESCENTE { background-color: var(--admig-azul-petroleo); color:#fff; }
+.badge-classe-JOVEM { background-color: var(--admig-verde-presente); color:#fff; }
 
 .login-split {
   min-height: 100vh;
